@@ -61,3 +61,26 @@ response = client.get_completion_from_messages_with_usage_details(
     messages, max_tokens=1
 )
 print(response)
+
+print("-------------Check how good output is 2-------------------")
+
+BAD_RESP = "life is like a box of chocolates"
+Q_A_PAIR = f"""
+Customer message: ```{CUSTOMER_MESSAGE}```
+Product information: ```{PRODUCT_INFORMATION}```
+Agent response: ```{BAD_RESP}```
+
+Does the response use the retrieved information correctly?
+Does the response sufficiently answer the question?
+
+Output Y or N
+"""
+messages = [
+    {"role": "system", "content": SYSTEM_MESSAGE},
+    {"role": "user", "content": Q_A_PAIR},
+]
+
+response = client.get_completion_from_messages_with_usage_details(
+    messages, max_tokens=1
+)
+print(response)
